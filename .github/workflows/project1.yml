@@ -1,17 +1,12 @@
 # This is a basic workflow to help you get started with Actions
 
-name: quickstart
+name: project1
 
-# Controls when the action will run.
-# Reference:
-# - on: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
-# - Events that trigger workflows: https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+# Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  schedule:
+    - cron: '* * * * *'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -31,9 +26,3 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
