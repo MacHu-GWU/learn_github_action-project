@@ -71,7 +71,7 @@ jobs:
         run: |
           ls -a
           [ ! -d ".venv" ] && virtualenv -p python3.9 .venv
-          ls .venv/bin/lib/python3.9/site-packages
+          ls .venv/lib/python3.9/site-packages
           [ ! -d ".venv/lib/python3.9/site-packages/boto3" ] && poetry install
           .venv/bin/pip list
-          ls .venv/bin/lib/python3.9/site-packages
+          ls .venv/lib/python3.9/site-packages
