@@ -69,6 +69,6 @@ jobs:
       - name: setup virtualenv, install python dependencies
         working-directory: ./examples/cache_python_package_dependencies
         run: |
-          [ -d ".venv" ] && virtualenv -p python3.9 .venv
+          [ ! -d ".venv" ] && virtualenv -p python3.9 .venv
           poetry install
           .venv/bin/pip list
