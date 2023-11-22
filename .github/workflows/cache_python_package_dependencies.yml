@@ -42,13 +42,13 @@ jobs:
           python-version: '3.9'
       - name: setup virtualenv
         run: |
-          virtualenv -p python3.9 .venv
-      - name: install python dependencies
+      - name: setup virtualenv, install python dependencies
         working-directory: ./examples/cache_python_package_dependencies
         run: |
-          source ../../.venv/bin/activate
+          virtualenv -p python3.9 .venv
+          source .venv/bin/activate
           poetry install
-          ../../.venv/bin/pip list
+          .venv/bin/pip list
   with_poetry_cache:
     runs-on: ubuntu-latest
     steps:
@@ -62,15 +62,13 @@ jobs:
           python-version: '3.9'
           cache: 'poetry'
           cache-dependency-path: examples/cache_python_package_dependencies/poetry.lock
-      - name: setup virtualenv
-        run: |
-          virtualenv -p python3.9 .venv
-      - name: install python dependencies
+      - name: setup virtualenv, install python dependencies
         working-directory: ./examples/cache_python_package_dependencies
         run: |
-          source ../../.venv/bin/activate
+          virtualenv -p python3.9 .venv
+          source .venv/bin/activate
           poetry install
-          ../../.venv/bin/pip list
+          .venv/bin/pip list
 #  with_poetry_cache:
 #    runs-on: ubuntu-latest
 #    steps:
