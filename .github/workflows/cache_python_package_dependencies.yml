@@ -45,6 +45,7 @@ jobs:
         run: |
           source ../../.venv/bin/activate
           poetry install
+          ../../.venv/bin/pip list
 #  with_poetry_cache:
 #    runs-on: ubuntu-latest
 #    steps:
