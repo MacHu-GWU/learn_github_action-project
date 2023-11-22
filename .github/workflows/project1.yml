@@ -1,12 +1,14 @@
 # This is a basic workflow to help you get started with Actions
 
-name: project1
+name: scheduled_job
 
 # Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
+  # See cron expression document: https://crontab.guru/
   schedule:
-    - cron: '*/5 * * * *'
+#    - cron: '*/5 * * * *' # every 5 minutes
+#    - cron: '0 8 * * *' # at 8AM every day
+    - cron: '0 8 1 * *' # at 8AM every 1st day of the month
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
