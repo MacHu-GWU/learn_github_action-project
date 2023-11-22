@@ -46,13 +46,17 @@ jobs:
         working-directory: ./examples/cache_python_package_dependencies
         run: |
           virtualenv -p python3.9 .venv
-          source .venv/bin/activate
           poetry install
           .venv/bin/pip list
   with_poetry_cache:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+          cache-dependency-path: examples/cache_python_package_dependencies/requirements_auto.txt
       - name: Install virtualenv and poetry
         run: |
           pipx install virtualenv
@@ -65,5 +69,6 @@ jobs:
       - name: setup virtualenv, install python dependencies
         working-directory: ./examples/cache_python_package_dependencies
         run: |
-          ls -a
+          [ -d ".venv" ] && virtualenv -p python3.9 .venv
+          poetry install
           .venv/bin/pip list
