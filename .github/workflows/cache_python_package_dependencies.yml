@@ -65,5 +65,5 @@ jobs:
       - name: setup virtualenv, install python dependencies
         working-directory: ./examples/cache_python_package_dependencies
         run: |
-          ls
+          ls -a
           .venv/bin/pip list
