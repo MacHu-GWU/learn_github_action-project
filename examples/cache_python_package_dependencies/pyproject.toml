@@ -1,0 +1,20 @@
+# Reference:
+# - The pyproject.toml file: https://python-poetry.org/docs/pyproject/
+# - Dependency specification: https://python-poetry.org/docs/dependency-specification/
+[tool.poetry]
+name = "cache_python_package_dependencies"
+version = "0.1.1"
+description = "Test cached virtualenv performance in GitHub Actions"
+authors = ["Alice <alice@example.com>"]
+
+[tool.poetry.dependencies]
+python = "3.9.*"
+boto3 = "~1.28"
+moto = "^4.2"
+aws-cdk-lib = "2.81.0"
+constructs = "^10.0.0"
+pytest = "^6.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

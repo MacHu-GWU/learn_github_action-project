@@ -9,32 +9,49 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  without_cache:
-    # The type of runner that the job will run on
+#  without_pip_cache:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v3
+#      - uses: actions/setup-python@v4
+#        with:
+#          python-version: '3.9'
+#      - name: install python dependencies
+#        run: pip install -r examples/cache_python_package_dependencies/requirements.txt
+#  with_pip_cache:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v3
+#      - uses: actions/setup-python@v4
+#        with:
+#          python-version: '3.9'
+#          # ref: https://github.com/actions/setup-python#caching-packages-dependencies
+#          cache: 'pip'
+#      - name: install python dependencies
+#        run: pip install -r examples/cache_python_package_dependencies/requirements.txt
+  without_poetry_cache:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3 # https://github.com/marketplace/actions/checkout
+      - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-      # Runs a single command using the runners shell
+      - name: setup virtualenv and poetry
+        run: |
+          pip3.9 install poetry
+          virtualenv -p python3.9 .venv
       - name: install python dependencies
-        run: pip install -r examples/cache_python_package_dependencies/requirements.txt
-  with_cache:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3 # https://github.com/marketplace/actions/checkout
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-          cache: 'pip' # caching pip dependencies
-      # Runs a single command using the runners shell
-      - name: install python dependencies
-        run: pip install -r examples/cache_python_package_dependencies/requirements.txt
+        working-directory: ./examples/cache_python_package_dependencies
+        run: |
+          source ../../.venv/bin/activate
+          poetry install
+#  with_poetry_cache:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v3
+#      - uses: actions/setup-python@v4
+#        with:
+#          python-version: '3.9'
+#          cache: 'pip'
+#      - name: install python dependencies
+#        run: pip install -r examples/cache_python_package_dependencies/requirements.txt
