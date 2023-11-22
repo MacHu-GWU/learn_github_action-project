@@ -1,5 +1,7 @@
 Scheduled Job
 ==============================================================================
+本例的实例 GitHub action workflow yaml 文件在 `scheduled_job.yml <../../.github/workflows/scheduled_job.yml>`_.
+
 GitHub Action 支持用 cron expression 设置定时任务.
 
 例如:

@@ -1,5 +1,4 @@
-# This is a basic workflow to help you get started with Actions
-
+# This is an advanced workflow to show you how to use cache to accelerate CI job run
 name: cache_python_package_dependencies
 
 # Controls when the action will run. 
@@ -9,26 +8,35 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-#  without_pip_cache:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v3
-#      - uses: actions/setup-python@v4
-#        with:
-#          python-version: '3.9'
-#      - name: install python dependencies
-#        run: pip install -r examples/cache_python_package_dependencies/requirements.txt
-#  with_pip_cache:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v3
-#      - uses: actions/setup-python@v4
-#        with:
-#          python-version: '3.9'
-#          # ref: https://github.com/actions/setup-python#caching-packages-dependencies
-#          cache: 'pip'
-#      - name: install python dependencies
-#        run: pip install -r examples/cache_python_package_dependencies/requirements.txt
+  # ----------------------------------------------------------------------------
+  # without_pip_cache and with_pip_cache are two examples to show how to
+  # use cache to accelerate CI job run
+  # ----------------------------------------------------------------------------
+  without_pip_cache:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: install python dependencies
+        run: pip install -r examples/cache_python_package_dependencies/requirements.txt
+  with_pip_cache:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          # ref: https://github.com/actions/setup-python#caching-packages-dependencies
+          cache: 'pip'
+          cache-dependency-path: examples/cache_python_package_dependencies/requirements.txt
+      - name: install python dependencies
+        run: pip install -r examples/cache_python_package_dependencies/requirements.txt
+  # ----------------------------------------------------------------------------
+  # without_poetry_cache and with_poetry_cache are two examples to show how to
+  # use cache to accelerate CI job run
+  # ----------------------------------------------------------------------------
   without_poetry_cache:
     runs-on: ubuntu-latest
     steps:
@@ -48,26 +56,39 @@ jobs:
           virtualenv -p python3.9 .venv
           poetry install
           .venv/bin/pip list
+  # ref:
+  # Advance usage - Caching packages: https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md#caching-packages
   with_poetry_cache:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      # we enable pip cache here, because we need to pip install virtualenv and poetry
       - uses: actions/setup-python@v4
         with:
           python-version: '3.9'
           cache: 'pip'
+          # we should create a requirements_auto.txt file to store the pip install dependencies
           cache-dependency-path: examples/cache_python_package_dependencies/requirements_auto.txt
+      # install virtualenv and poetry to global python before next step
       - name: Install virtualenv and poetry
         run: |
           pip install virtualenv
           pip install poetry
+      # we enable poetry cache here, it will cache the .venv folder
+      # the .venv folder is automatically discovered by poetry
       - uses: actions/setup-python@v4
         with:
           python-version: '3.9'
           cache: 'poetry'
+          # use poetry.lock as cache key
           cache-dependency-path: examples/cache_python_package_dependencies/poetry.lock
+      # if you are using monorepo, you can set the working directory to the project sub folder
       - name: setup virtualenv, install python dependencies
         working-directory: ./examples/cache_python_package_dependencies
+        # we use ``[ ! -d "..."] && ...`` to check if the cached .venv folder exists,
+        # if exists, we should skip the virtualenv creation and poetry install
+        # we may still need to install the project Python library itself
+        # using ``poetry install --only-root``  (without installing dependencies)
         run: |
           [ ! -d ".venv" ] && virtualenv -p python3.9 .venv
           [ ! -d ".venv/lib/python3.9/site-packages/boto3" ] && poetry install
