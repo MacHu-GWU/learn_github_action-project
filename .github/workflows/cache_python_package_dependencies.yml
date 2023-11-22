@@ -17,7 +17,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3 # https://github.com/marketplace/actions/checkout
-
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
       # Runs a single command using the runners shell
       - name: install python dependencies
         run: pip install -r examples/cache_python_package_dependencies/requirements.txt
@@ -29,7 +31,10 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3 # https://github.com/marketplace/actions/checkout
-
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          cache: 'pip' # caching pip dependencies
       # Runs a single command using the runners shell
       - name: install python dependencies
         run: pip install -r examples/cache_python_package_dependencies/requirements.txt
