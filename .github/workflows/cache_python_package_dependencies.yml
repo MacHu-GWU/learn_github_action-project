@@ -54,6 +54,7 @@ jobs:
         with:
           python-version: '3.9'
           cache: 'poetry'
+          cache-dependency-path: examples/cache_python_package_dependencies/poetry.lock
       - name: setup virtualenv and poetry
         run: |
           pip3.9 install poetry
