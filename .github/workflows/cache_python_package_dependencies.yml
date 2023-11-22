@@ -70,5 +70,5 @@ jobs:
         working-directory: ./examples/cache_python_package_dependencies
         run: |
           [ ! -d ".venv" ] && virtualenv -p python3.9 .venv
-          poetry install
+          [ ! -d ".venv/lib/python3.9/site-packages/boto3" ] && poetry install
           .venv/bin/pip list
