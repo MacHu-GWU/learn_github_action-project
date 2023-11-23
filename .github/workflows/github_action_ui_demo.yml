@@ -21,7 +21,7 @@ jobs:
       - name: show colorful console output
         run: |
           pip install rich
-          rich
+          python -m rich
   job_2:
     name: Job 2
     needs: job_1
