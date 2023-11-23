@@ -2,8 +2,8 @@
 
 from rich.console import Console
 
-console = Console(force_terminal=True)
-
+console = Console()
+# console = Console(force_terminal=True)
 
 data = {
     "name": "Show rich color",

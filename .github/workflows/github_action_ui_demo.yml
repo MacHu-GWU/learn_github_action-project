@@ -15,6 +15,7 @@ jobs:
         run: echo "This is job 1, step 1"
       - name: Job 1, step 2
         run: echo "This is job 1, step 2"
+      - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
           python-version: '3.9'
