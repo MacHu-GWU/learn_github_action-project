@@ -33,7 +33,7 @@ jobs:
         run: echo "This is job 3, step 1"
       - name: Job 3, step 2
         run: echo "This is job 3, step 2"
-  job 4:
+  job_4:
     name: Job 4
     needs: [job_2, job_3]
     runs-on: ubuntu-latest
