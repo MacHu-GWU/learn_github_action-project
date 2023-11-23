@@ -17,3 +17,9 @@ What are we looking for
 我个人曾经是 AWS CodeBuild 的重度用户. 不过 CodeBuild 里用户无法自定义 Stage, 只能用 CodeBuild 里定义的 install, pre-build, build, post-build 几个 Phase. 而由于 CodeBuild 的日志都是用 CloudWatch 捕获的, 所以它的日志截图就是一长串的纯文本, 不像 Jenkins UI 的日志界面可以一层层折叠打开.
 
 我们回到 GitHub Action
+
+
+GitHub Action UI Demo
+
+- `github_action_ui_demo.yml <../../.github/workflows/github_action_ui_demo.yml>`_
+- `CI job run examples <https://github.com/MacHu-GWU/learn_github_action-project/actions/workflows/github_action_ui_demo.yml>`_
