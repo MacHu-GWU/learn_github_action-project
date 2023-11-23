@@ -21,7 +21,7 @@ jobs:
       - name: show colorful console output
         run: |
           pip install rich
-          python -m rich
+          python examples/github_action_ui/show_rich_color.py
   job_2:
     name: Job 2
     needs: job_1
