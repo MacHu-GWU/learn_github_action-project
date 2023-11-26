@@ -1,6 +1,6 @@
 Cache Python Package Dependencies
 ==============================================================================
-本例的实例 GitHub action workflow yaml 文件在 `cache_python_package_dependencies.yml <../../.github/workflows/cache_python_package_dependencies.yml>`_.
+本例的实例 GitHub action workflow yaml 文件在 `cache_python_package_dependencies.yml <../../.github/workflows/s101_cache_python_package_dependencies.yml>`_.
 
 
 Overview

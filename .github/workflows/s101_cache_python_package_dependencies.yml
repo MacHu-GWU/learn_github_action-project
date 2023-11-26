@@ -1,5 +1,5 @@
 # This is an advanced workflow to show you how to use cache to accelerate CI job run
-name: cache_python_package_dependencies
+name: s101_cache_python_package_dependencies
 
 # Controls when the action will run. 
 on:
@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: '3.9'
       - name: install python dependencies
-        run: pip install -r examples/cache_python_package_dependencies/requirements.txt
+        run: pip install -r examples/s101_cache_python_package_dependencies/requirements.txt
   with_pip_cache:
     runs-on: ubuntu-latest
     steps:
@@ -30,9 +30,9 @@ jobs:
           python-version: '3.9'
           # ref: https://github.com/actions/setup-python#caching-packages-dependencies
           cache: 'pip'
-          cache-dependency-path: examples/cache_python_package_dependencies/requirements.txt
+          cache-dependency-path: examples/s101_cache_python_package_dependencies/requirements.txt
       - name: install python dependencies
-        run: pip install -r examples/cache_python_package_dependencies/requirements.txt
+        run: pip install -r examples/s101_cache_python_package_dependencies/requirements.txt
   # ----------------------------------------------------------------------------
   # without_poetry_cache and with_poetry_cache are two examples to show how to
   # use cache to accelerate CI job run
@@ -51,7 +51,7 @@ jobs:
       - name: setup virtualenv
         run: |
       - name: setup virtualenv, install python dependencies
-        working-directory: ./examples/cache_python_package_dependencies
+        working-directory: ./examples/s101_cache_python_package_dependencies
         run: |
           virtualenv -p python3.9 .venv
           poetry install
@@ -68,7 +68,7 @@ jobs:
           python-version: '3.9'
           cache: 'pip'
           # we should create a requirements_auto.txt file to store the pip install dependencies
-          cache-dependency-path: examples/cache_python_package_dependencies/requirements_auto.txt
+          cache-dependency-path: examples/s101_cache_python_package_dependencies/requirements_auto.txt
       # install virtualenv and poetry to global python before next step
       - name: Install virtualenv and poetry
         run: |
@@ -81,10 +81,10 @@ jobs:
           python-version: '3.9'
           cache: 'poetry'
           # use poetry.lock as cache key
-          cache-dependency-path: examples/cache_python_package_dependencies/poetry.lock
+          cache-dependency-path: examples/s101_cache_python_package_dependencies/poetry.lock
       # if you are using monorepo, you can set the working directory to the project sub folder
       - name: setup virtualenv, install python dependencies
-        working-directory: ./examples/cache_python_package_dependencies
+        working-directory: ./examples/s101_cache_python_package_dependencies
         # we use ``[ ! -d "..."] && ...`` to check if the cached .venv folder exists,
         # if exists, we should skip the virtualenv creation and poetry install
         # we may still need to install the project Python library itself
