@@ -1,4 +1,4 @@
-# This is an advanced workflow to show you how to use GitHub open id to authenticate with AWS
+# This is an advanced workflow to show you how to use GitHub action with AWS CDK
 # ref: https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services
 name: s104_aws_cdk_synth_and_deploy
 
@@ -15,30 +15,68 @@ permissions:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  test_github_open_id_for_aws:
+  cdk_synth:
     runs-on: ubuntu-latest
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v4
-      - name: configure aws credentials
+      - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v3
         with:
-          # AWS account ID are considered as not-sensitive, but nice to have it as a secret
           role-to-assume: arn:aws:iam::878625312159:role/learn-github-action-configure-open-id-connect-test
           role-session-name: sample_role_session
           aws-region: ${{ env.AWS_REGION }}
-      - name: Test the current aws session
+      - name: Test the default AWS Credentials
         run: |
           aws sts get-caller-identity
       # ref: https://dev.to/aws-builders/deploy-to-aws-with-github-actions-and-aws-cdk-4m1e
-      - name: Set up Node
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "16"
-      - name: install CDK, python dependencies, do cdk synth and deploy
-        working-directory: ./examples/s104_aws_cdk_synth_and_deploy
+      - name: Install AWS CDK
         run: |
           npm install -g aws-cdk
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+          # use poetry.lock as cache key
+          cache-dependency-path: examples/s104_aws_cdk_synth_and_deploy/requirements.txt
+      - name: Install Python dependencies
+        working-directory: ./examples/s104_aws_cdk_synth_and_deploy
+        run: |
           pip install -r requirements.txt
+      - name: Do cdk synth
+        working-directory: ./examples/s104_aws_cdk_synth_and_deploy
+        run: |
           cdk synth
-          cdk deploy --require-approval never
+      - name: Upload CDK Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: aws-cdk-synth-artifacts
+          path: ./examples/s104_aws_cdk_synth_and_deploy/cdk.out/*.*
+          retention-days: 1
+  cdk_deploy_1:
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::878625312159:role/learn-github-action-configure-open-id-connect-test
+          role-session-name: sample_role_session
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+      - name: Install AWS CDK
+        run: |
+          npm install -g aws-cdk
+    - name: Download CDK Artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: aws-cdk-synth-artifacts
+    - name: Do cdk deploy
+      working-directory: ./examples/s104_aws_cdk_synth_and_deploy
+      run: |
+        cdk deploy --require-approval never
