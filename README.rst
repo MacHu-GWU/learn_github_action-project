@@ -42,4 +42,6 @@ Knowledge Graph
 Table of Content
 ------------------------------------------------------------------------------
 - Python
-    - `s101_cache_python_package_dependencies <./examples/s101_cache_python_package_dependencies/README.rst>`_
+    - `Cache Python Package Dependencies <./examples/s101_cache_python_package_dependencies/README.rst>`_
+    - `Matrix Build for OpenSource <./examples/s102_matrix_build_for_opensource/README.rst>`_
+    - `Configuring OpenID Connect in Amazon Web Services <./examples/s103_configure_open_id_connect_in_aws/README.rst>`_

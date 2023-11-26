@@ -1,6 +1,6 @@
 # This is an advanced workflow to show you how to use GitHub open id to authenticate with AWS
 # ref: https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services
-name: s103_github_open_id_to_aws
+name: s103_configure_open_id_connect_in_aws
 
 # Controls when the action will run. 
 on:
@@ -23,9 +23,10 @@ jobs:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v3
         with:
-          role-to-assume: arn:aws:iam::878625312159:role/learn-github-action-Role-Okt359vlsuyE
+          # AWS account ID are considered as not-sensitive, but nice to have it as a secret
+          role-to-assume: arn:aws:iam::111122223333:role/learn-github-action-Role-Okt359vlsuyE
           role-session-name: sample_role_session
           aws-region: ${{ env.AWS_REGION }}
-      - name:  Copy index.html to s3
+      - name: Test the current aws session
         run: |
           aws sts get-caller-identity
