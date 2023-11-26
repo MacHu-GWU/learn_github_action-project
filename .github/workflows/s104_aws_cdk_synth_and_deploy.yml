@@ -76,6 +76,16 @@ jobs:
       - name: Install AWS CDK
         run: |
           npm install -g aws-cdk
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+          # use poetry.lock as cache key
+          cache-dependency-path: examples/s104_aws_cdk_synth_and_deploy/requirements.txt
+      - name: Install Python dependencies
+        working-directory: ./examples/s104_aws_cdk_synth_and_deploy
+        run: |
+          pip install -r requirements.txt
       - name: Download CDK Artifacts
         uses: actions/download-artifact@v3
         with:
