@@ -73,11 +73,11 @@ jobs:
       - name: Install AWS CDK
         run: |
           npm install -g aws-cdk
-    - name: Download CDK Artifacts
-      uses: actions/download-artifact@v3
-      with:
-        name: aws-cdk-synth-artifacts
-    - name: Do cdk deploy
-      working-directory: ./examples/s104_aws_cdk_synth_and_deploy
-      run: |
-        cdk deploy --require-approval never
+      - name: Download CDK Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: aws-cdk-synth-artifacts
+      - name: Do cdk deploy
+        working-directory: ./examples/s104_aws_cdk_synth_and_deploy
+        run: |
+          cdk deploy --require-approval never
