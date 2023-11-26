@@ -42,4 +42,4 @@ Knowledge Graph
 Table of Content
 ------------------------------------------------------------------------------
 - Python
-    - `s101_cache_python_package_dependencies <../../examples/s101_cache_python_package_dependencies/README.rst>`_
+    - `s101_cache_python_package_dependencies <./examples/s101_cache_python_package_dependencies/README.rst>`_
