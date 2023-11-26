@@ -1,6 +1,6 @@
 Matrix Build for OpenSource
 ==============================================================================
-本例的实例 GitHub action workflow yaml 文件在 `cache_python_package_dependencies.yml <../../.github/workflows/s101_cache_python_package_dependencies.yml>`_.
+本例的实例 GitHub action workflow yaml 文件在 `s102_matrix_build_for_opensource.yml <../../.github/workflows/s102_matrix_build_for_opensource.yml>`_.
 
 这里有一些 `示例的 Build <https://github.com/MacHu-GWU/learn_github_action-project/actions/workflows/s102_matrix_build_for_opensource.yml>`_.
 
