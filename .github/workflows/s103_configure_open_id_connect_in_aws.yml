@@ -24,7 +24,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v3
         with:
           # AWS account ID are considered as not-sensitive, but nice to have it as a secret
-          role-to-assume: arn:aws:iam::111122223333:role/learn-github-action-Role-Okt359vlsuyE
+          role-to-assume: arn:aws:iam::878625312159:role/learn-github-action-configure-open-id-connect-test
           role-session-name: sample_role_session
           aws-region: ${{ env.AWS_REGION }}
       - name: Test the current aws session
