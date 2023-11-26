@@ -60,40 +60,43 @@ jobs:
           name: "aws-cdk-synth-artifacts-${{ matrix.stack }}"
           path: ./examples/s104_aws_cdk_synth_and_deploy/${{ matrix.stack }}/cdk.out/*.*
           retention-days: 1
-#  cdk_deploy_1:
-#    runs-on: ubuntu-latest
-#    needs: cdk_synth
-#    steps:
-#      - name: Git clone the repository
-#        uses: actions/checkout@v4
-#      - name: Configure AWS Credentials
-#        uses: aws-actions/configure-aws-credentials@v3
-#        with:
-#          role-to-assume: arn:aws:iam::878625312159:role/learn-github-action-configure-open-id-connect-test
-#          role-session-name: sample_role_session
-#          aws-region: ${{ env.AWS_REGION }}
-#      - name: Set up Node.js
-#        uses: actions/setup-node@v3
-#        with:
-#          node-version: "16"
-#      - name: Install AWS CDK
-#        run: |
-#          npm install -g aws-cdk
-#      - uses: actions/setup-python@v4
-#        with:
-#          python-version: '3.9'
-#          cache: 'pip'
-#          # use poetry.lock as cache key
-#          cache-dependency-path: examples/s104_aws_cdk_synth_and_deploy/requirements.txt
-#      - name: Install Python dependencies
-#        working-directory: ./examples/s104_aws_cdk_synth_and_deploy
-#        run: |
-#          pip install -r requirements.txt
-#      - name: Download CDK Artifacts
-#        uses: actions/download-artifact@v3
-#        with:
-#          name: aws-cdk-synth-artifacts
-#      - name: Do cdk deploy
-#        working-directory: ./examples/s104_aws_cdk_synth_and_deploy
-#        run: |
-#          cdk deploy --require-approval never
+  cdk_deploy:
+    runs-on: ubuntu-latest
+    needs: cdk_synth
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v4
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::878625312159:role/learn-github-action-configure-open-id-connect-test
+          role-session-name: sample_role_session
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+      - name: Install AWS CDK
+        run: |
+          npm install -g aws-cdk
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+          # use poetry.lock as cache key
+          cache-dependency-path: examples/s104_aws_cdk_synth_and_deploy/requirements.txt
+      - name: Install Python dependencies
+        working-directory: ./examples/s104_aws_cdk_synth_and_deploy
+        run: |
+          pip install -r requirements.txt
+      - name: Download CDK Artifacts for stack1
+        uses: actions/download-artifact@v3
+        with:
+          name: aws-cdk-synth-artifacts-stack1
+      - name: Download CDK Artifacts for stack2
+        uses: actions/download-artifact@v3
+        with:
+          name: aws-cdk-synth-artifacts-stack2
+      - name: Do cdk deploy
+        run: |
+          python ./examples/s104_aws_cdk_synth_and_deploy/deploy.py
