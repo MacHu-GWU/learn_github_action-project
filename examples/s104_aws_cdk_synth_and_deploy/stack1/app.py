@@ -12,7 +12,7 @@ import aws_cdk.aws_s3_assets as s3_assets
 from constructs import Construct
 
 
-class GitHubActionTestCdkStack(Stack):
+class GitHubActionTestCdkStack1(Stack):
     def __init__(
         self,
         scope: Construct,
@@ -34,5 +34,5 @@ class GitHubActionTestCdkStack(Stack):
 
 
 app = App()
-stack = GitHubActionTestCdkStack(app, "GitHubActionTestCdkStack")
+stack = GitHubActionTestCdkStack1(app, "GitHubActionTestCdkStack1")
 app.synth()
