@@ -20,5 +20,4 @@ OpenID 是一种让不同系统中的 identity 互相能相连的互联网标准
 Reference
 ------------------------------------------------------------------------------
 - `Configuring OpenID Connect in Amazon Web Services <https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services>`_: GitHub 的官方文档
-- `Sample IAM OIDC CloudFormation Template
- <https://github.com/aws-actions/configure-aws-credentials#sample-iam-oidc-cloudformation-template>`_: 由 AWS 维护的 GitHub action, 可以方便地配置好 AWS 权限. 这一节里提到的 cloudformation template 可以方便地配置好 AWS 那边需要的设置.
+- `Sample IAM OIDC CloudFormation Template <https://github.com/aws-actions/configure-aws-credentials#sample-iam-oidc-cloudformation-template>`_: 由 AWS 维护的 GitHub action, 可以方便地配置好 AWS 权限. 这一节里提到的 cloudformation template 可以方便地配置好 AWS 那边需要的设置.
