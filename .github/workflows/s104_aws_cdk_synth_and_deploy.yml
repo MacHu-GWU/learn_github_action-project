@@ -30,9 +30,15 @@ jobs:
       - name: Test the current aws session
         run: |
           aws sts get-caller-identity
-      - name: install python dependencies, do cdk synth and deploy
+      # ref: https://dev.to/aws-builders/deploy-to-aws-with-github-actions-and-aws-cdk-4m1e
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+      - name: install CDK, python dependencies, do cdk synth and deploy
         working-directory: ./examples/s104_aws_cdk_synth_and_deploy
         run: |
+          npm install -g aws-cdk
           pip install -r requirements.txt
           cdk synth
           cdk deploy --require-approval never
