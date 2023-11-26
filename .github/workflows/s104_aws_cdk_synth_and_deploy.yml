@@ -58,6 +58,7 @@ jobs:
           path: ./examples/s104_aws_cdk_synth_and_deploy/cdk.out/*.*
           retention-days: 1
   cdk_deploy_1:
+    runs-on: ubuntu-latest
     steps:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v3
