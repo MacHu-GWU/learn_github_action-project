@@ -1,0 +1,25 @@
+# This is an advanced workflow to show you how to use GitHub open id to authenticate with AWS
+# ref: https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services
+name: s103_github_open_id_to_aws
+
+# Controls when the action will run. 
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  test_github_open_id_for_aws:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v4
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::878625312159:role/learn_github_action_oidc
+          role-session-name: sample_role_session
+          aws-region: us-east-1
+      - name:  Copy index.html to s3
+        run: |
+          aws sts get-caller-identity
