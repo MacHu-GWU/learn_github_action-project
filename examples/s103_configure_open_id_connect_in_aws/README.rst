@@ -27,15 +27,20 @@ How to Setup
 
 第一步, 配置 AWS 的 IAM, 本质上是告知 AWS 请允许 GitHub 上的某个 Organization 的某个 Repository (或是全部的 Repository) 能 assume 某一个 Role. 我们就要在这创建这个 Role.
 
-1. 部署 CloudFormation Template (本例中使用的是 us-east-1 region): 打开 `AWS CloudFormation Console 的 Create stack 菜单 <https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create>`_, 选择 Prepare template -> Template is ready, Specify template -> Template source -> Upload a template file -> Choose file -> 选择 `Sample IAM OIDC CloudFormation Template <https://github.com/aws-actions/configure-aws-credentials#sample-iam-oidc-cloudformation-template>`_ 官方文档中下载好的 CloudFormation template, 我这里自己做了一个基于官方并有略微改动的 point-in-time 备份 `configure-aws-credentials-2023-11-26.yml <./configure-aws-credentials-2023-11-26.yml>`_. (我倾向于使用我自己的因为官方的生成的 IAM Role 名字是不确定的, 而我的是确定的).
-    - stack name: 我的 stack name 是 ``learn-github-action-configure-open-id-connect-test``
-    - Github Org: 我的 Organization 是 ``MacHu-GWU``
-    - RepositoryName: 如果你想让所有的 Repo 都能 assume 这个 Role, 就填 ``*``, 否则填写你想要的 Repo 名称, 例如我们这个 Repo ``learn_github_action-project``.
-    - OIDCAudience: 使用它自动填好的 ``sts.amazonaws.com``
-    - OIDCProviderArn: 默认留空.
-    - RoleName: 填写你想要的 Role 名称, 例如 ``learn-github-action-configure-open-id-connect-test``.
-    - Tag: ``tech:description = Test configure GitHub open id connect in AWS``
-    - Capabilities: 勾选 "I acknowledge that AWS CloudFormation might create IAM resources".
+1. 部署 CloudFormation Template (本例中使用的是 us-east-1 region): 有两种方法, 一种是通过 AWS Console 手动部署, 一种是通过代码自动部署. 建议先用代码自动部署一遍 (因为出错的概率小), 测试通过后再删除部署, 然后手动部署一次, 加深理解.
+    - 自动部署:
+        - 修改 `deploy_cloudformation.py <./deploy_cloudformation.py>`_ 中的变量, 参照说明安装好依赖, 然后运行即可.
+    - 手动部署:
+        - 打开 `AWS CloudFormation Console 的 Create stack 菜单 <https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create>`_, 选择 Prepare template -> Template is ready, Specify template -> Template source -> Upload a template file -> Choose file
+        - 我这里自己做了一个基于 `官方提供的例子 <https://github.com/aws-actions/configure-aws-credentials#sample-iam-oidc-cloudformation-template>`_ 并有略微改动的 point-in-time 备份 `configure-aws-credentials-2023-11-26.yml <./configure-aws-credentials-2023-11-26.yml>`_. (我倾向于使用我自己的因为官方的生成的 IAM Role 名字是不确定的, 而我的是确定的).
+        - stack name: 我的 stack name 是 ``learn-github-action-configure-open-id-connect-test``
+        - GitHubOrg: 我的 Organization 是 ``MacHu-GWU``
+        - RepositoryName: 如果你想让所有的 Repo 都能 assume 这个 Role, 就填 ``*``, 否则填写你想要的 Repo 名称, 例如我们这个 Repo ``learn_github_action-project``.
+        - OIDCAudience: 使用它自动填好的 ``sts.amazonaws.com``
+        - OIDCProviderArn: 默认留空.
+        - RoleName: 填写你想要的 Role 名称, 例如 ``learn-github-action-configure-open-id-connect-test``.
+        - Tag: ``tech:description = Test configure GitHub open id connect in AWS``
+        - Capabilities: 勾选 "I acknowledge that AWS CloudFormation might create IAM resources".
 
 
 Reference
