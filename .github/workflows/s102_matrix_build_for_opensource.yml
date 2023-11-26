@@ -1,0 +1,39 @@
+# For open source project, it is common to test your software on both Windows and Linux
+# for multiple Python versions. This is an example workflow to show you how to do that
+# using matrix build
+name: s102_matrix_build_for_opensource
+
+# Controls when the action will run. 
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  tests:
+    strategy:
+      matrix:
+        # for all available VM runtime, see this: https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources
+        os: ["ubuntu-latest", "windows-latest"]
+        # for all available Python version, see this: https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners#supported-software
+        python-version: ["3.9", "3.10"]
+    name: "${{ matrix.os }} Python ${{ matrix.python-version }}"
+    runs-on: "${{ matrix.os }}"
+    steps:
+      - uses: "actions/checkout@v3" # https://github.com/marketplace/actions/checkout
+      - uses: "actions/setup-python@v4" # https://github.com/marketplace/actions/setup-python
+        with:
+          python-version: "${{ matrix.python-version }}"
+      - name: "Install common dependencies"
+        run: |
+          echo "Install common dependencies"
+      # Sometimes you need special handling for different OS, or Python version
+      # you can use if statement to do that
+      - name: "Install special dependencies on Linux"
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          echo "Install special dependencies on Linux"
+      - name: "Install dependencies on Windows"
+        if: matrix.os == 'windows-latest'
+        run: |
+          echo "Install dependencies on Windows"
