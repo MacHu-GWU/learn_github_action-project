@@ -41,6 +41,7 @@ How to Setup
         - RoleName: 填写你想要的 Role 名称, 例如 ``learn-github-action-configure-open-id-connect-test``.
         - Tag: ``tech:description = Test configure GitHub open id connect in AWS``
         - Capabilities: 勾选 "I acknowledge that AWS CloudFormation might create IAM resources".
+2. 然后修改 `s103_configure_open_id_connect_in_aws.yml <../../.github/workflows/s103_configure_open_id_connect_in_aws.yml>`_ 文件, 确保最后面的 IAM Role 跟前面部署的一致. 然后就可以到 `GitHub Action <https://github.com/MacHu-GWU/learn_github_action-project/actions/workflows/s103_configure_open_id_connect_in_aws.yml>`_ 中手动运行一次了, 它会 assume 我们刚才创建的 Role 并打印自己的 principal.
 
 
 Reference

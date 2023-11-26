@@ -1,0 +1,38 @@
+# This is an advanced workflow to show you how to use GitHub open id to authenticate with AWS
+# ref: https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services
+name: s104_aws_cdk_synth_and_deploy
+
+# Controls when the action will run. 
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  AWS_REGION: "us-east-1"
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read # This is required for actions/checkout
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  test_github_open_id_for_aws:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v4
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          # AWS account ID are considered as not-sensitive, but nice to have it as a secret
+          role-to-assume: arn:aws:iam::878625312159:role/learn-github-action-configure-open-id-connect-test
+          role-session-name: sample_role_session
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Test the current aws session
+        run: |
+          aws sts get-caller-identity
+      - name: install python dependencies, do cdk synth and deploy
+        working-directory: ./examples/s104_aws_cdk_synth_and_deploy
+        run: |
+          pip install -r requirements.txt
+          cdk synth
+          cdk deploy --require-approval never
