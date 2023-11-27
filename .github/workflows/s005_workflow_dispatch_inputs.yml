@@ -5,6 +5,9 @@ on:
     inputs:
       env_name:
         description: environment name, for example, dev, test, prod
+        required: true
+        default: dev
+        type: choice
         options:
           - dev
           - test
