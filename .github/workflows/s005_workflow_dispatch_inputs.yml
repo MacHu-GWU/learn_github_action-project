@@ -1,5 +1,5 @@
 # This is a minimal viable GitHub Action Workflow
-name: s001_minimal_workflow
+name: s005_workflow_dispatch_inputs
 on:
   workflow_dispatch:
     inputs:
