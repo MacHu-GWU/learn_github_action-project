@@ -1,24 +1,24 @@
-# This is a minimal viable GitHub Action Workflow
+# This example shows how to use workflow dispatch inputs to specify input parameters
+# when you run the workflow manually
 name: s005_workflow_dispatch_inputs
 on:
   workflow_dispatch:
+    # on.workflow_dispatch.inputs: https://docs.github.com/en/enterprise-cloud@latest/actions/using-workflows/workflow-syntax-for-github-actions#onworkflow_dispatchinputs
     inputs:
       env_name:
         description: environment name, for example, dev, test, prod
         required: true
         default: dev
-        type: choice
+        type: choice # this type will create a dropdown menu
         options:
           - dev
           - test
           - prod
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Display the current environment
+        # you can use ${{ github.event.inputs.env_name }} context to access the value
         run: |
           echo "env_name: ${{ github.event.inputs.env_name }}"
