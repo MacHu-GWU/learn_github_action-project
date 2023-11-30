@@ -44,6 +44,11 @@ How to Setup
 2. 然后修改 `s103_configure_open_id_connect_in_aws.yml <../../.github/workflows/s103_configure_open_id_connect_in_aws.yml>`_ 文件, 确保最后面的 IAM Role 跟前面部署的一致. 然后就可以到 `GitHub Action <https://github.com/MacHu-GWU/learn_github_action-project/actions/workflows/s103_configure_open_id_connect_in_aws.yml>`_ 中手动运行一次了, 它会 assume 我们刚才创建的 Role 并打印自己的 principal.
 
 
+The gh_action_open_id_in_aws Python Library
+------------------------------------------------------------------------------
+为了方便重复以上步骤, 我开发了一个 `gh_action_open_id_in_aws <https://github.com/MacHu-GWU/gh_action_open_id_in_aws-project>`_ Python 库, 使得能够方便地自动化以上步骤.
+
+
 Reference
 ------------------------------------------------------------------------------
 - `Configuring OpenID Connect in Amazon Web Services <https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services>`_: GitHub 的官方文档. 建议先看这个文档了解一下原理和详细步骤.
