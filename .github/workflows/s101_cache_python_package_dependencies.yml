@@ -100,7 +100,9 @@ jobs:
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v3
-      # ------------------------------------------------------------------------------
+      # ------------------------------------------------------------------------
+      - #
+      # ------------------------------------------------------------------------
       - name: Setup Python for virtualenv and poetry
         uses: actions/setup-python@v4
         with:
@@ -111,7 +113,7 @@ jobs:
         run: |
           pip install virtualenv
           pip install poetry
-      # ------------------------------------------------------------------------------
+      # ------------------------------------------------------------------------
       - name: Setup Python for bootstrap
         uses: actions/setup-python@v4
         with:
@@ -126,8 +128,9 @@ jobs:
           [ ! -d ".venv/bin/virtualenv" ] && .venv/bin/pip install virtualenv
           [ ! -d ".venv/bin/poetry" ] && .venv/bin/pip install poetry
           [ ! -d ".venv/bin/poetry" ] && .venv/bin/poetry install
+          ls
           .venv/bin/pip list
-      # ------------------------------------------------------------------------------
+      # ------------------------------------------------------------------------
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
@@ -136,7 +139,11 @@ jobs:
           cache-dependency-path: examples/s101_cache_python_package_dependencies/poetry.lock
       - name: Setup Virtualenv
         working-directory: ./examples/s101_cache_python_package_dependencies
+        # [ ! -d ".venv" ] && bootstrap/.venv/bin/virtualenv -p python3.9 .venv
+        # 的含义是, 如果第一个表达式 [ ! -d ".venv" ] 成立, 则执行第二个表达式
+        # 翻译过来就是, 如果 .venv 文件夹不存在, 则创建虚拟环境
         run: |
           [ ! -d ".venv" ] && bootstrap/.venv/bin/virtualenv -p python3.9 .venv
           [ ! -d ".venv/lib/python3.9/site-packages/boto3" ] && bootstrap/.venv/bin/poetry install
+          ls
           .venv/bin/pip list
