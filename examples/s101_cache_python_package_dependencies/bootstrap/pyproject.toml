@@ -1,0 +1,17 @@
+# Reference:
+# - The pyproject.toml file: https://python-poetry.org/docs/pyproject/
+# - Dependency specification: https://python-poetry.org/docs/dependency-specification/
+[tool.poetry]
+name = "bootstra_cache_python_package_dependencies"
+version = "0.1.1"
+description = "Test cached virtualenv performance in GitHub Actions"
+authors = ["Alice <alice@example.com>"]
+
+[tool.poetry.dependencies]
+python = "3.9.*"
+virtualenv = "~20.11"
+poetry = "~1.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
