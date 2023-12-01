@@ -128,7 +128,7 @@ jobs:
           [ ! -d ".venv/bin/virtualenv" ] && .venv/bin/pip install virtualenv
           [ ! -d ".venv/bin/poetry" ] && .venv/bin/pip install poetry
           [ ! -d ".venv/bin/poetry" ] && .venv/bin/poetry install
-          ls
+          ls -a
           .venv/bin/pip list
       # ------------------------------------------------------------------------
       - name: Setup Python
@@ -145,5 +145,5 @@ jobs:
         run: |
           [ ! -d ".venv" ] && bootstrap/.venv/bin/virtualenv -p python3.9 .venv
           [ ! -d ".venv/lib/python3.9/site-packages/boto3" ] && bootstrap/.venv/bin/poetry install
-          ls
+          ls -a
           .venv/bin/pip list
