@@ -100,6 +100,18 @@ jobs:
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v3
+      # ------------------------------------------------------------------------------
+      - name: Setup Python for virtualenv and poetry
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+          cache-dependency-path: examples/s101_cache_python_package_dependencies/requirements_auto.txt
+      - name: Install virtualenv and poetry
+        run: |
+          pip install virtualenv
+          pip install poetry
+      # ------------------------------------------------------------------------------
       - name: Setup Python for bootstrap
         uses: actions/setup-python@v4
         with:
@@ -115,6 +127,7 @@ jobs:
           [ ! -d ".venv/bin/poetry" ] && .venv/bin/pip install poetry
           [ ! -d ".venv/bin/poetry" ] && .venv/bin/poetry install
           .venv/bin/pip list
+      # ------------------------------------------------------------------------------
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
