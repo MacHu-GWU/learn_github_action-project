@@ -1,3 +1,10 @@
+# ------------------------------------------------------------------------------
+# Demonstrate how to run parameterized job in parallel using matrix
+#
+# Reference:
+#
+# - Using a matrix for your jobs: https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs
+# ------------------------------------------------------------------------------
 name: 01_07_matrix_build
 
 on:

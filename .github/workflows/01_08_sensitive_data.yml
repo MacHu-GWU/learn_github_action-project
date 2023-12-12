@@ -1,0 +1,22 @@
+# ------------------------------------------------------------------------------
+# Demonstrate how to use sensitive data in GitHub Actions
+#
+# Reference:
+#
+# - Security hardening for GitHub Actions: https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions
+# ------------------------------------------------------------------------------
+name: 01_08_sensitive_data
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: build
+        run: |
+          echo masked secret:
+          echo "${{ secrets.DUMMY_SSN }}"
+          echo first four digits:
+          echo "${{ secrets.DUMMY_SSN }}" | awk '{print substr($0,0,4)}'
