@@ -17,8 +17,6 @@ jobs:
       JOB_TYPE: build
     if: ${{ env.JOB_TYPE == 'build' }}
     runs-on: ubuntu-latest
-    env:
-      TASK_ID: 1
     steps:
       - name: build 1
 #        if: ${{ env.TASK_ID == '1' }}
