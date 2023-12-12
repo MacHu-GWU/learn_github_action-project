@@ -9,20 +9,21 @@ on:
 # - Logical operators: https://docs.github.com/en/actions/learn-github-actions/expressions#operators
 # - Functions: https://docs.github.com/en/actions/learn-github-actions/expressions#functions
 
-
+env:
+  JOB_TYPE: build
 
 jobs:
   build_job:
-    env:
-      JOB_TYPE: build
-    if: ${{ env.JOB_TYPE == 'build' }}
+#    if: ${{ env.JOB_TYPE == 'build' }}
     runs-on: ubuntu-latest
+    env:
+      TASK_ID: 1
     steps:
       - name: build 1
-#        if: ${{ env.TASK_ID == '1' }}
+        if: ${{ env.TASK_ID == '1' }}
         run: echo building 1
       - name: build 2
-#        if: ${{ env.TASK_ID == '2' }}
+        if: ${{ env.TASK_ID == '2' }}
         run: echo building 2
   test_job:
 #    if: ${{ env.JOB_TYPE == 'test' }}
