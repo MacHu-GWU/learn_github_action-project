@@ -5,7 +5,7 @@
 #
 # - Context: https://docs.github.com/en/actions/learn-github-actions/contexts
 # ------------------------------------------------------------------------------
-name: 01_05_context_information.yml
+name: 01_05_context_information
 on:
   workflow_dispatch:
 jobs:
