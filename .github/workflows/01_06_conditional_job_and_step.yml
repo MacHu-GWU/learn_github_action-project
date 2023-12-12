@@ -15,7 +15,7 @@ jobs:
   build_job:
     env:
       JOB_TYPE: build
-    if: env.JOB_TYPE == 'build'
+    if: ${{ env.JOB_TYPE == 'build' }}
     runs-on: ubuntu-latest
     env:
       TASK_ID: 1
