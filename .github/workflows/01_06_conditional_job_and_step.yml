@@ -1,0 +1,39 @@
+# demonstrate how to orchestrate jobs
+name: 01_06_conditional_job_and_step
+on:
+  workflow_dispatch:
+# You can use if conditional to decide whether to run a job or step
+#
+# - job.<job_id>.if: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idif
+# - jobs.<job_id>.steps[*].if: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsif
+# - Logical operators: https://docs.github.com/en/actions/learn-github-actions/expressions#operators
+# - Functions: https://docs.github.com/en/actions/learn-github-actions/expressions#functions
+
+env:
+  JOB_TYPE: build
+
+jobs:
+  build_job:
+    if: ${{ env.JOB_TYPE == 'build' }}
+    runs-on: ubuntu-latest
+    env:
+      TASK_ID: 1
+    steps:
+      - name: build 1
+        if: ${{ env.TASK_ID == '1' }}
+        run: echo building 1
+      - name: build 2
+        if: ${{ env.TASK_ID == '2' }}
+        run: echo building 2
+  test_job:
+    if: ${{ env.JOB_TYPE == 'test' }}
+    runs-on: ubuntu-latest
+    env:
+      TASK_ID: 1
+    steps:
+      - name: test 1
+        if: ${{ env.TASK_ID == '1' }}
+        run: echo testing 1
+      - name: test 2
+        if: ${{ env.TASK_ID == '2' }}
+        run: echo testing 2
