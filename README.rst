@@ -1,6 +1,6 @@
 
 .. image:: https://readthedocs.org/projects/learn-github-action/badge/?version=latest
-    :target: https://learn-github-action.readthedocs.io/en/latest/
+    :target: https://learn-github-action.readthedocs.io/
     :alt: Documentation Status
 
 .. image:: https://img.shields.io/badge/STAR_Me_on_GitHub!--None.svg?style=social
@@ -9,7 +9,7 @@
 ------
 
 .. image:: https://img.shields.io/badge/Link-Document-blue.svg
-    :target: https://learn-github-action.readthedocs.io/en/latest/
+    :target: https://learn-github-action.readthedocs.io/
 
 .. image:: https://img.shields.io/badge/Link-GitHub-blue.svg
     :target: https://github.com/MacHu-GWU/learn_github_action-project
