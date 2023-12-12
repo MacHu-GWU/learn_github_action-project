@@ -1,0 +1,27 @@
+# ------------------------------------------------------------------------------
+# Demonstrate how to define and use environment variables
+#
+# Reference
+#
+# - Context: https://docs.github.com/en/actions/learn-github-actions/contexts
+# ------------------------------------------------------------------------------
+name: 01_05_context_information.yml
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: show context
+        run: |
+          echo github = ${{ github }}
+          echo github.action = ${{ github.action }}
+          echo github.action_path = ${{ github.action_path }}
+          echo github.action_ref = ${{ github.action_ref }}
+          echo github.action_repository = ${{ github.action_repository }}
+          echo github.action_status = ${{ github.action_status }}
+          echo github.actor = ${{ github.actor }}
+          echo github.actor_id = ${{ github.actor_id }}
+          echo github.api_url = ${{ github.api_url }}
+          echo github.base_ref = ${{ github.base_ref }}
+          echo github.env = ${{ github.env }}
