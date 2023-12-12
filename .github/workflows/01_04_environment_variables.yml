@@ -1,0 +1,25 @@
+# ------------------------------------------------------------------------------
+# Demonstrate how to define and use environment variables
+#
+# Reference
+#
+# - Variables: https://docs.github.com/en/actions/learn-github-actions/variables
+# ------------------------------------------------------------------------------
+name: 01_04_environment_variables
+on:
+  workflow_dispatch:
+env: # workflow level env var
+  WORKFLOW_ENV_VAR: "this is a workflow env var"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env: # job level env var
+      JOB_ENV_VAR: 'this is a job env var'
+    steps:
+      - name: build
+        env: # step level env var
+          STEP_ENV_VAR: this is a step env var
+        run: |
+          echo WORKFLOW_ENV_VAR = ${WORKFLOW_ENV_VAR}
+          echo JOB_ENV_VAR = ${JOB_ENV_VAR}
+          echo STEP_ENV_VAR = ${STEP_ENV_VAR}

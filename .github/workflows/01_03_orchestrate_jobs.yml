@@ -1,16 +1,11 @@
 # demonstrate how to orchestrate jobs
 name: 01_03_orchestrate_jobs
-# Controls when the action will run.
-# Reference:
-# - on: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
-# - Events that trigger workflows: https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
 on:
-  # To enable a workflow to be triggered manually, you need to configure the workflow_dispatch event.
-  # - workflow_dispatch: https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch
-  # - Manually running a workflow: https://docs.github.com/en/actions/using-workflows/manually-running-a-workflow
-  # Allows you to run this workflow manually from the GitHub Actions tab
   workflow_dispatch:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+#
+# - Defining prerequisite jobs: https://docs.github.com/en/actions/using-jobs/using-jobs-in-a-workflow#defining-prerequisite-jobs
+# - jobs.<job_id>.needs: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idneeds
 jobs:
   # the DAG diagram looks like:
   # build -> [test1, test2] -> deploy

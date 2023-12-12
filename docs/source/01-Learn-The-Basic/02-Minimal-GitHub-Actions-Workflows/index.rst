@@ -1,5 +1,5 @@
 Minimal GitHub Actions Workflows
 ==============================================================================
-.. literalinclude:: ../../../../.github/workflows/s001_minimal_workflow.yml
+.. literalinclude:: ../../../../.github/workflows/01_02_minimal_workflow.yml
    :language: yaml
    :linenos:
