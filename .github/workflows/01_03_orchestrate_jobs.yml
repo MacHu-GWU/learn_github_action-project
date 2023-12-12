@@ -1,5 +1,5 @@
 # This is a minimal viable GitHub Action Workflow
-name: s001_minimal_workflow
+name: 01_03_orchestrate_jobs
 # Controls when the action will run.
 # Reference:
 # - on: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on

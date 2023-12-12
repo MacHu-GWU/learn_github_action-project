@@ -1,0 +1,39 @@
+# This is a minimal viable GitHub Action Workflow
+name: 01_02_minimal_workflow
+# Controls when the action will run.
+# Reference:
+# - on: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
+# - Events that trigger workflows: https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+on:
+  # To enable a workflow to be triggered manually, you need to configure the workflow_dispatch event.
+  # - workflow_dispatch: https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch
+  # - Manually running a workflow: https://docs.github.com/en/actions/using-workflows/manually-running-a-workflow
+  # Allows you to run this workflow manually from the GitHub Actions tab
+  workflow_dispatch:
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # the DAG diagram looks like:
+  # build -> [test1, test2] -> deploy
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: build
+        run: echo building
+  test1:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: test1
+        run: echo testing
+  test2:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: test2
+        run: echo testing
+  deploy:
+    needs: [test1, test2]
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy
+        run: echo deploying
