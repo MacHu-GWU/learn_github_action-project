@@ -9,10 +9,3 @@ Table of Content
     :maxdepth: 1
 
 .. include:: ../../AUTHORS.rst
-
-
-API Document
-------------------------------------------------------------------------------
-
-* :ref:`by Name <genindex>`
-* :ref:`by Structure <modindex>`
