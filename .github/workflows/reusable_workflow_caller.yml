@@ -1,8 +1,0 @@
-# This is a minimal viable GitHub Action Workflow
-# - Reusing workflows: https://docs.github.com/en/actions/using-workflows/reusing-workflows
-name: reusable_workflow_caller
-on:
-  workflow_dispatch:
-jobs:
-  call_worker:
-    uses: MacHu-GWU/learn_github_action-project/.github/workflows/reusable_workflow_worker.yml@main
