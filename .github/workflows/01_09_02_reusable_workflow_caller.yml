@@ -9,4 +9,20 @@ on:
   workflow_dispatch:
 jobs:
   call_worker:
+    # --------------------------------------------------------------------------
+    # in the previous example, we have to have a @main at the end to specify
+    # which branch to use for searching the workflow yaml file. without @main
+    # it always uses the default branch.
+    #
+    # however, if you are working on a feature branch, and you are editing the
+    # worker yaml file, how do you let caller to find the worker yaml file from
+    # the same branch?
+    #
+    # Intuitively, you may want to use ${{ github.base_ref }} context,
+    # however, the github context is not available in the jobs.<job_id>.uses key
+    #
+    # GitHub released a new feature 2022-01-25, now you can reference a workflow
+    # in the same branch locally
+    # GitHub Actions: Reusable workflows can be referenced locally: https://github.blog/changelog/2022-01-25-github-actions-reusable-workflows-can-be-referenced-locally/
+    # # --------------------------------------------------------------------------
     uses: ./.github/workflows/01_09_02_reusable_workflow_worker.yml
