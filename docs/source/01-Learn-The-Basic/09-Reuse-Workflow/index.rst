@@ -1,3 +1,5 @@
+.. _reuse-workflow:
+
 Reuse Workflow
 ==============================================================================
 GitHub Actions 中的 Reuse Workflow 和 `CircleCI Orb <https://circleci.com/orbs/>`_, 都是为了解决 YAML 代码复用, 参数化而设计的机制.
