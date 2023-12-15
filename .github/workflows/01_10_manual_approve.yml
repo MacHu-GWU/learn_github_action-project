@@ -1,6 +1,6 @@
 name: 01_10_manual_approve.yml
 on:
-  workflow_call:
+  workflow_dispatch:
   push:
     branches:
       - 'project1/release*'
