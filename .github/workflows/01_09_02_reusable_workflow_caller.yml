@@ -9,4 +9,4 @@ on:
   workflow_dispatch:
 jobs:
   call_worker:
-    uses: MacHu-GWU/learn_github_action-project/.github/workflows/01_09_02_reusable_workflow_worker.yml@${{ github.base_ref}}
+    uses: ./01_09_02_reusable_workflow_worker.yml
