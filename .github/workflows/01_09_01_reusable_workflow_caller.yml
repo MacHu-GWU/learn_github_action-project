@@ -4,9 +4,9 @@
 # - Reusing workflows: https://docs.github.com/en/actions/using-workflows/reusing-workflows
 # - Using inputs and secrets in a reusable workflow: https://docs.github.com/en/actions/using-workflows/reusing-workflows#using-inputs-and-secrets-in-a-reusable-workflow
 # ------------------------------------------------------------------------------
-name: 01_09_reusable_workflow_caller
+name: 01_09_01_reusable_workflow_caller
 on:
   workflow_dispatch:
 jobs:
   call_worker:
-    uses: MacHu-GWU/learn_github_action-project/.github/workflows/01_09_reusable_workflow_caller.yml@main
+    uses: MacHu-GWU/learn_github_action-project/.github/workflows/01_09_01_reusable_workflow_worker.yml@main
