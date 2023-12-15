@@ -9,11 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run a one-line script
-        run: deploy to sandbox environment
+        run: echo deploy to sandbox environment
   prd:
     runs-on: ubuntu-latest
     environment:
       name: prd
+    needs: [sbx]
     steps:
       - name: Run a one-line script
-        run: deploy to prod environment
+        run: echo deploy to prod environment
