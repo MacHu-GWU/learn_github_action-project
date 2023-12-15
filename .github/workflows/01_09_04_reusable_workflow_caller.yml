@@ -1,0 +1,17 @@
+# ------------------------------------------------------------------------------
+# Reuse workflow caller
+#
+# - Reusing workflows: https://docs.github.com/en/actions/using-workflows/reusing-workflows
+# - Using inputs and secrets in a reusable workflow: https://docs.github.com/en/actions/using-workflows/reusing-workflows#using-inputs-and-secrets-in-a-reusable-workflow
+# ------------------------------------------------------------------------------
+name: 01_09_04_reusable_workflow_caller.yml
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'all/release*'
+jobs:
+  project1:
+    uses: ./.github/workflows/01_09_04_reusable_workflow_project1.yml
+  project2:
+    uses: ./.github/workflows/01_09_04_reusable_workflow_project2.yml

@@ -1,0 +1,12 @@
+name: 01_09_04_reusable_workflow_project2.yml
+on:
+  workflow_call:
+  push:
+    branches:
+      - 'project1/release*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a one-line script
+        run: deploy project 2
