@@ -45,9 +45,32 @@ Worker
    :linenos:
 
 
-4. Difficult
+4. Multiple Project Release in Mono Repo
 ------------------------------------------------------------------------------
 在 Monorepo 项目中, 你可能会用多个项目文件夹隔离不同的项目. 每一个项目都是一个 deployment unit, 都会有一个自己的 workflow 让自己分别部署. 但有的时候你会希望将这些 workflow 一次性部署. 这应该如何实现比较好呢?
+
+可以这样做, 由于是 mono repo, 你的每个 project 的 release 都是放在 ``${project_name}/release`` branch 上做的.
+
+而如果你要一次性的 release 多个项目, 你则是在 ``all/release`` branch 上做, 并且直接在这个 branch 上修改 caller 的 workflow yaml file 即可. 你要 release 几个项目就启用几个项目即可, 不需要的项目就 comment 掉.
+
+Caller
+
+.. literalinclude:: ../../../../.github/workflows/01_09_04_reusable_workflow_caller.yml
+   :language: yaml
+   :linenos:
+
+Project 1 Worker
+
+.. literalinclude:: ../../../../.github/workflows/01_09_04_reusable_workflow_project1.yml
+   :language: yaml
+   :linenos:
+
+Project 2 Worker
+
+.. literalinclude:: ../../../../.github/workflows/01_09_04_reusable_workflow_project1.yml
+   :language: yaml
+   :linenos:
+
 
 Reference
 ------------------------------------------------------------------------------
