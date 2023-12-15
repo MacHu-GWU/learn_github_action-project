@@ -1,0 +1,19 @@
+name: 01_10_manual_approve.yml
+on:
+  workflow_call:
+  push:
+    branches:
+      - 'project1/release*'
+jobs:
+  sbx:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a one-line script
+        run: deploy to sandbox environment
+  prd:
+    runs-on: ubuntu-latest
+    environment:
+      name: prd
+    steps:
+      - name: Run a one-line script
+        run: deploy to prod environment
