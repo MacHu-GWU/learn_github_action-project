@@ -13,4 +13,3 @@ jobs:
           echo build your project
           echo test your project
           echo deploy your project
-          echo this is dev branch
