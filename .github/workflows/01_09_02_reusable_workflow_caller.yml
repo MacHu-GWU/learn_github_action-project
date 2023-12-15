@@ -9,4 +9,4 @@ on:
   workflow_dispatch:
 jobs:
   call_worker:
-    uses: ./01_09_02_reusable_workflow_worker.yml
+    uses: ./.github/workflows/01_09_02_reusable_workflow_worker.yml
