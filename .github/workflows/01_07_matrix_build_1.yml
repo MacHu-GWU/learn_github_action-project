@@ -5,7 +5,7 @@
 #
 # - Using a matrix for your jobs: https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs
 # ------------------------------------------------------------------------------
-name: 01_07_matrix_build
+name: 01_07_matrix_build_1
 
 on:
   workflow_dispatch:
@@ -16,7 +16,10 @@ jobs:
       # Using a matrix for your jobs: https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs
       matrix:
         # for all available VM runtime, see this: https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources
-        os: ["ubuntu-latest", "windows-latest"]
+        os: [
+          "ubuntu-latest",
+          "windows-latest"
+        ]
         # for all available Python version, see this: https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners#supported-software
         python-version: ["3.9", "3.10"]
     name: "${{ matrix.os }} Python ${{ matrix.python-version }}"
