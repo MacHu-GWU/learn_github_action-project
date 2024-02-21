@@ -18,4 +18,5 @@ jobs:
           "01_09_04_reusable_workflow_project1",
           "01_09_04_reusable_workflow_project2"
         ]
+    # this doesn't work
     uses: "./.github/workflows/${{ matrix.project }}.yml"
