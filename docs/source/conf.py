@@ -53,6 +53,7 @@ extensions = [
     "sphinx_design",
     "docfly.directives",
     "nbsphinx",
+    "sphinx_search.extension",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
