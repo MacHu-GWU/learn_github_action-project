@@ -53,7 +53,6 @@ extensions = [
     "sphinx_design",
     "docfly.directives",
     "nbsphinx",
-    "sphinx_rtd_theme",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -104,10 +103,8 @@ todo_include_todos = True
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-#
-# html_theme = "furo"
-html_theme = "alabaster"
-# html_theme = "sphinx_rtd_theme"
+
+html_theme = "furo"
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -127,7 +124,6 @@ html_css_files = [
 ]
 html_js_files = [
     "js/sorttable.js",
-    "js/readthedocs.js",
 ]
 html_logo = "./_static/{}-logo.png".format(package_name)
 html_favicon = "./_static/{}-favicon.ico".format(package_name)
